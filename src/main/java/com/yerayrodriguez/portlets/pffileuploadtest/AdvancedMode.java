@@ -26,7 +26,6 @@ public class AdvancedMode implements Serializable {
     this.file = file;
   }
 
-
   public String getText() {
     return text;
   }
@@ -35,20 +34,18 @@ public class AdvancedMode implements Serializable {
     this.text = text;
   }
 
-  public void processUpload() {
-    logger.info("Text: " + text);
-    if (file != null) {
-      logger.info("Uploaded file: " + file.getFileName() + " " + file.getContents().length);
-    } else {
-      logger.info("Uploaded file: empty");
-    }
-    setFile(null);
-    setText(null);
+  public String getFileName() {
+    return file != null ? file.getFileName() : "empty";
+  }
+
+  public void submit() {
+    logger.info("Text: " + getText());
+    logger.info("Uploaded file: " + getFileName());
   }
 
   public void handleFileUpload(FileUploadEvent event) {
     setFile(event.getFile());
-    logger.info("handleFileUpload:" + getFile().getFileName());
+    logger.info("handleFileUpload:" + getFileName());
   }
 
 }

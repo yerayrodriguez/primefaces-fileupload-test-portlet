@@ -33,15 +33,13 @@ public class SimpleModeTheming implements Serializable {
     this.text = text;
   }
 
-  public void processUpload() {
-    logger.info("Text: " + text);
-    if (file != null) {
-      logger.info("Uploaded file: " + file.getFileName() + " " + file.getContents().length);
-    } else {
-      logger.info("Uploaded file: empty");
-    }
-    setFile(null);
-    setText(null);
+  public String getFileName() {
+    return file != null ? file.getFileName() : "empty";
+  }
+
+  public void submit() {
+    logger.info("Text: " + getText());
+    logger.info("Uploaded file: " + getFileName());
   }
 
 }
